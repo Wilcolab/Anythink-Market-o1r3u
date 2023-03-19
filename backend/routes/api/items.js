@@ -183,7 +183,13 @@ router.put("/:item", auth.required, function(req, res, next) {
       }
 
       if (typeof req.body.item.image !== "undefined") {
+
+      if(req.body.item.image !== ""){
+        req.item.image = "https://github.com/ObelusFamily/Anythink-Market-o1r3u/blob/main/frontend/src/imgs/placeholder.png"
+      }
+      else{
         req.item.image = req.body.item.image;
+      }
       }
 
       if (typeof req.body.item.tagList !== "undefined") {
