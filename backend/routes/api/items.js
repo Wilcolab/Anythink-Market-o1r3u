@@ -164,10 +164,7 @@ router.get("/:item", auth.optional, function(req, res, next) {
   ])
     .then(function(results) {
       var user = results[0];
-      if (req.item.image !== "") {
-        req.item.image = "https://github.com/ObelusFamily/Anythink-Market-o1r3u/blob/main/frontend/src/imgs/placeholder.png";
-        console.log(req.item.image);
-      }
+
       return res.json({ item: req.item.toJSONFor(user) });
     })
     .catch(next);
