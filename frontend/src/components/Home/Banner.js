@@ -1,17 +1,23 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
+import agent from "../../agent"
 
-const Banner = () => {
+const Banner = (props) => {
   const [message, setMessage] = React.useState("");
 
-  const messageChangeHandler = e => {
-    e.preventDefault();
-    setMessage(e.target.value);
-    console.log('user entered:', e.target.value);
+  const onSearchTitleChange = (event) => {
+    
+    if(message.length >= 2){
+      props.onSearchFilter(
+        event.target.value,
+        (page) => agent.Items.byTitle(event.target.value),
+        agent.Items.byTitle(event.target.value)
+        
+      )
+    }
+    setMessage(event.target.value);
+    // console.log('user entered:', event.target.value);
 
-    // if(message >= 3){
-
-    // }
   };
 
   return (
@@ -20,8 +26,17 @@ const Banner = () => {
         <img src={logo} alt="banner" />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <span>A place to <span id="get-part">get</span></span>
-          <input onChange={messageChangeHandler} value={message} placeholder="What is it you truly desire?"
-            style={{ width: "15rem", margin: "0px 10px", borderRadius: "5px", borderWidth: "0" }} />
+          <form>
+            <input 
+              onChange={onSearchTitleChange} 
+              value={message} 
+              placeholder="What is it you truly desire?"
+              style={{ 
+                width: "15rem", 
+                margin: "0px 10px", 
+                borderRadius: "5px", 
+                borderWidth: "0" }} />
+            </form>
           <span> the cool stuff</span>
         </div>
       </div>
