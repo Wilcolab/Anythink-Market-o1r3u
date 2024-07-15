@@ -30,7 +30,7 @@ const ItemPreview = (props) => {
     }
   };
   let TopSellerLogic = item.seller.isVerified && item.seller.isVerified === true 
-      ? <div id="verified_seller_item" className="item-footer"><img alt="verified_seller" src="/verified_seller.svg" /> TOP SELLER</div>
+      ? <div id="item_verified_seller_item" className="item-footer"><img alt="verified_seller" src="verified_seller.svg" /> TOP SELLER</div>
       : null;
   return (
     <div
