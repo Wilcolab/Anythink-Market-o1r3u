@@ -4,6 +4,7 @@ import agent from "../agent";
 import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
 
+
 const mapDispatchToProps = (dispatch) => ({
   favorite: (slug) =>
     dispatch({
@@ -25,10 +26,12 @@ const ItemPreview = (props) => {
     if (item.favorited) {
       props.unfavorite(item.slug);
     } else {
-      props.favorite(item.slug);
+      props.favorite(item.slug); 
     }
   };
-
+  let TopSellerLogic = item.seller.isVerified && item.seller.isVerified === true 
+      ? <div id="verified_seller_item" className="item-footer"><img alt="verified seller" src="/verified_seller.svg" /> TOP SELLER</div>
+      : null;
   return (
     <div
       className="card bg-dark border-light p-3"
@@ -54,6 +57,7 @@ const ItemPreview = (props) => {
               className="user-pic rounded-circle pr-1"
             />
           </Link>
+          {TopSellerLogic}
           <button className="btn btn-outline-secondary" onClick={handleClick}>
             <i className="ion-heart"></i> {item.favoritesCount}
           </button>
